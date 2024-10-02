@@ -10,14 +10,14 @@ const session = require("express-session");
 const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema");
-const clientid = process.env.clientid;
-const clientsecret = process.env.clientsecret;
+const clientid = process.env.client_id;
+const clientsecret = process.env.client_secret;
 const commentdb = require("./model/commentSchema");
 
 
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://rohans-portfolio-client.vercel.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -28,7 +28,7 @@ app.use(express.json());
 
 // setup session
 app.use(session({
-    secret:"JaiShreeRam",
+    secret:process.env.session_secret,
     resave:false,
     saveUninitialized:true
 }))
@@ -78,8 +78,8 @@ passport.deserializeUser((user,done)=>{
 app.get("/auth/google",passport.authenticate("google",{scope:["profile","email"]}));
 
 app.get("/auth/google/callback",passport.authenticate("google",{
-    successRedirect:"http://localhost:3000",
-    failureRedirect:"http://localhost:3000/LogInOut"
+    successRedirect:"https://rohans-portfolio-client.vercel.app",
+    failureRedirect:"https://rohans-portfolio-client.vercel.app/LogInOut"
 }))
 
 app.get("/login/sucess",async(req,res)=>{
@@ -160,10 +160,10 @@ app.post('/disLikes/submit', async (req, res) => {
 app.get("/logout",(req,res,next)=>{
     req.logout(function(err){
         if(err){return next(err)}
-        res.redirect("http://localhost:3000");
+        res.redirect("https://rohans-portfolio-client.vercel.app");
     })
 })
 
-app.listen(PORT,()=>{
-    console.log(`server start at port no ${PORT}`)
+app.listen(process.env.PORT,()=>{
+    console.log(`server start at port no ${process.env.PORT}`)
 })
