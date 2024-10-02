@@ -5,7 +5,6 @@ const cors = require("cors");
 
 require("./db/conn");
 require('dotenv').config();
-const PORT = 5000;
 const session = require("express-session");
 const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
@@ -41,7 +40,7 @@ passport.use(
     new OAuth2Strategy({
         clientID:clientid,
         clientSecret:clientsecret,
-        callbackURL:"https://rohans-portfolio-server.vercel.app/auth/google/callback",
+        callbackURL:"/auth/google/callback",
         scope:["profile","email", "https://www.googleapis.com/auth/photoslibrary.readonly"]
     },
     async(accessToken,refreshToken,profile,done)=>{
