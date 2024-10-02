@@ -40,7 +40,7 @@ passport.use(
     new OAuth2Strategy({
         clientID:clientid,
         clientSecret:clientsecret,
-        callbackURL:"/auth/google/callback",
+        callbackURL:"https://rohans-portfolio-server.vercel.app/auth/google/callback",
         scope:["profile","email", "https://www.googleapis.com/auth/photoslibrary.readonly"]
     },
     async(accessToken,refreshToken,profile,done)=>{
