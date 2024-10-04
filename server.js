@@ -74,12 +74,13 @@ passport.deserializeUser((user,done)=>{
 });
 
 // initial google ouath login
-app.get("/auth/google",passport.authenticate("google",{scope:["profile","email"]}));
+app.get("/auth/google", passport.authenticate("google",{scope:["profile","email"]}));
 
-app.get("/auth/google/callback",passport.authenticate("google",{
-    successRedirect:"https://rohans-portfolio-client.vercel.app",
-    failureRedirect:"https://rohans-portfolio-client.vercel.app/LogInOut"
-}))
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'https://rohans-portfolio-client.vercel.app/LogInOut' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('https://rohans-portfolio-client.vercel.app');
+  });
 
 app.get("/login/sucess",async(req,res)=>{
 
