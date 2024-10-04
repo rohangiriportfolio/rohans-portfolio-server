@@ -11,6 +11,7 @@ const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema");
 const clientid = process.env.client_id;
 const clientsecret = process.env.client_secret;
+const sessionid = process.env.session_secret;
 const commentdb = require("./model/commentSchema");
 
 
@@ -27,7 +28,7 @@ app.use(express.json());
 
 // setup session
 app.use(session({
-    secret:process.env.session_secret,
+    secret: sessionid,
     resave:false,
     saveUninitialized:true
 }))
