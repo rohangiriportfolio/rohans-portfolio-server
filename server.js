@@ -14,9 +14,7 @@ const clientsecret = process.env.client_secret;
 const sessionid = process.env.session_secret;
 const commentdb = require("./model/commentSchema");
 
-// setuppassport
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 app.use(cors({
     origin: "https://rohans-portfolio-client.vercel.app",
@@ -35,7 +33,9 @@ app.use(session({
     saveUninitialized:true
 }))
 
-
+// setuppassport
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(
     new OAuth2Strategy({
