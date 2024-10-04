@@ -42,7 +42,7 @@ passport.use(
         clientID:clientid,
         clientSecret:clientsecret,
         callbackURL:"https://rohans-portfolio-server.vercel.app/auth/google/callback",
-        scope:["profile","email", "https://www.googleapis.com/auth/photoslibrary.readonly"]
+        scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
         try {
