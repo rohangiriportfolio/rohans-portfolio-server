@@ -1,18 +1,16 @@
 require("dotenv").config();
+require("./db/conn");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
-require("./db/conn");
-require('dotenv').config();
 const session = require("express-session");
 const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema");
+const commentdb = require("./model/commentSchema");
 const clientid = process.env.client_id;
 const clientsecret = process.env.client_secret;
 const sessionid = process.env.session_secret;
-const commentdb = require("./model/commentSchema");
 
 
 
