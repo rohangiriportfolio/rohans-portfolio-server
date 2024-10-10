@@ -83,7 +83,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
     res.redirect('https://rohans-portfolio-client.vercel.app');
   });
 
-app.get("/login/sucess",async(req,res)=>{
+app.get("/login/success",async(req,res)=>{
 
     if(req.user){
         try{
