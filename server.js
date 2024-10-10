@@ -89,12 +89,17 @@ app.get("/login/sucess",async(req,res)=>{
         try{
             res.status(200).json({message:"user Login",user:req.user})
         }
-        catch(error){}
+        catch(error){
+            console.log(req.user);
+        }
     }else{
         try{
+            console.log(req.user);
             res.status(400).json({message:"Not Authorized"})
         }
-        catch(error){}
+        catch(error){
+            console.log(req.user);
+        }
     }
 })
 
