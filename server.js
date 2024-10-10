@@ -10,7 +10,6 @@ const userdb = require("./model/userSchema");
 const commentdb = require("./model/commentSchema");
 const clientid = process.env.client_id;
 const clientsecret = process.env.client_secret;
-const sessionid = process.env.session_secret;
 
 
 
@@ -26,7 +25,7 @@ app.use(express.json());
 
 // setup session
 app.use(session({
-    secret: sessionid,
+    secret: "JaiShreeRam",
     resave:false,
     saveUninitialized:true
 }));
