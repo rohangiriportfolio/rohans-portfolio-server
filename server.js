@@ -29,7 +29,7 @@ app.use(session({
     secret: sessionid,
     resave:false,
     saveUninitialized:true
-}))
+}));
 
 // setuppassport
 app.use(passport.initialize());
@@ -64,13 +64,16 @@ passport.use(
     )
 )
 
-passport.serializeUser((user,done)=>{
-    done(null,user);
-})
-
-passport.deserializeUser((user,done)=>{
-    done(null,user);
+passport.serializeUser((user, done) => {
+  done(null, user._id);
 });
+
+passport.deserializeUser((id, done) => {
+  userdb.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
 
 // initial google ouath login
 app.get("/auth/google", passport.authenticate("google",{scope:["profile","email"]}));
