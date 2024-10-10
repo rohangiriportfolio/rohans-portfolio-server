@@ -96,7 +96,7 @@ app.get("/login/sucess",async(req,res)=>{
     }else{
         try{
             console.log(req.user);
-            res.status(400).json({message:"Not Authorized"})
+            res.status(401).json({message:"Not Authorized"})
         }
         catch(error){
             console.log(req.user);
